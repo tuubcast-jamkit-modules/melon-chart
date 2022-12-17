@@ -4,7 +4,7 @@ var module = (function() {
     var _id = "", _handlers = [];
     var _dir_path = "";
     var _web_loaded = false;
-    var _chart_selected = false
+    var _chart_selected = false;
 
     function _on_web_loaded(data) {
         if (!_chart_selected) {
@@ -23,7 +23,7 @@ var module = (function() {
                     /* Do nothing */
                 })
                 .catch(function(error) {
-                    console.log(JSON.stringify(error))
+                    console.log(JSON.stringify(error));
                 });
         }
     }
@@ -35,10 +35,10 @@ var module = (function() {
                 /* Do nothing */
                 })
                 .catch(function(error) {
-                    console.log(JSON.stringify(error))
+                    console.log(JSON.stringify(error));
                 });
 
-            _chart_selected = true
+            _chart_selected = true;
     
             return
         }
@@ -58,20 +58,23 @@ var module = (function() {
         initialize: function(id) {
             var web_prefix = id.replace(".", "_");
             var dir_path = this.__ENV__["dir-path"];
-
-            webjs.initialize(id + ".web", "__$_bridge");
             
+            global[web_prefix + "__on_web_activate"] = function() {
+                webjs.initialize(id + ".web", "__$_bridge");
+            }
+
             global[web_prefix + "__on_web_loaded"] = function(data) {
                 _on_web_loaded(data);
             }
+            
             global[web_prefix + "__on_web_start"] = function(data) {
                 _on_web_start(data);
             }
 
             view.object(id).action("load", { 
-                "filename":dir_path + "/web.sbml",
-                "web-id":id, 
-                "web-prefix":web_prefix
+                "filename": dir_path + "/web.sbml",
+                "web-id": id, 
+                "web-prefix": web_prefix
             });
 
             _id = id, _dir_path = dir_path;
@@ -88,7 +91,7 @@ var module = (function() {
                         })
                         .catch(function(error) {
                             reject(error);
-                        })
+                        });
                 }
 
                 _web_loaded ? handler() : _handlers.push(handler);

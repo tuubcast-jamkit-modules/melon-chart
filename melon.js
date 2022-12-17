@@ -32,13 +32,13 @@ function getTopMusics(onResult, onError) {
  
         if (listItems) {
             if (listItems.length > 50) {
-                var musics = []
+                var musics = [];
     
                 for (var i = 0; i < listItems.length; i++) {
                     musics.push({
                         "title": listItems[i].getElementsByClassName('title')[0].firstChild.nodeValue.trim(),
                         "singer": listItems[i].getElementsByClassName('name')[0].firstChild.nodeValue.trim()
-                    })
+                    });
                 }
     
                 onResult({ "musics":musics });    
@@ -48,7 +48,7 @@ function getTopMusics(onResult, onError) {
                 }, 200);
             }
         } else {
-            onError({ "code":404, "message":"Not Found" });
+            onError({ "code":404, "message": "Not Found" });
         } 
     } else {
         setTimeout(function() {
