@@ -2,6 +2,7 @@
 
 =object web: id=${web-id}.web, url="https://m2.melon.com", \
             javascript-bridge="__$_bridge", uses-browser-user-agent=yes, blocks-image=yes, \
+            script-when-activate=${web-prefix}__on_web_activate, \
             script-when-loaded=${web-prefix}__on_web_loaded, \
             script-when-start=${web-prefix}__on_web_start, \
             style=web
