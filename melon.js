@@ -41,14 +41,14 @@ function getTopMusics(onResult, onError) {
                     });
                 }
     
-                onResult({ "musics":musics });    
+                onResult({ "musics": musics });    
             } else {
                 setTimeout(function() {
                     getTopMusics(onResult, onError);
                 }, 200);
             }
         } else {
-            onError({ "code":404, "message": "Not Found" });
+            onError({ "code": 404, "message": "Not Found" });
         } 
     } else {
         setTimeout(function() {
