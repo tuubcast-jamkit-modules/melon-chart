@@ -56,3 +56,17 @@ function getTopMusics(onResult, onError) {
         }, 200);
     }
 }
+
+function fireInnerButton(onResult, onError) {
+    try {
+        var button = document.getElementsByClassName('inner-btn')[0];
+
+        button.click();
+
+        onResult();
+    } catch(e) {
+        setTimeout(function() {
+            fireInnerButton(onResult, onError);
+        }, 200);
+    }
+}

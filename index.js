@@ -7,6 +7,25 @@ var module = (function() {
     var _chart_selected = false;
 
     function _on_web_loaded(data) {
+        if (data["url"].startsWith("https://m2.melon.com/onboarding")) {
+            webjs.import(_dir_path + "/melon.js");
+            webjs.call("fireInnerButton")
+                .then(function(result) {
+                    /* Do nothing */
+                })
+                .catch(function(error) {
+                    console.log(JSON.stringify(error))
+                });
+
+            return;
+        }
+
+        if (data["url"].startsWith("https://m2.melon.com/buy/pamphlet")) {
+            view.object(data["id"]).action("home");
+
+            return;
+        }
+
         if (!_chart_selected) {
             webjs.import(_dir_path + "/melon.js");
             webjs.call("goMainChart")
